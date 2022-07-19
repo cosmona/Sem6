@@ -1,5 +1,5 @@
 "use strict";
-let dias = 0;
+let dias = 1;
 let horas = 23;
 let minutos = 59;
 let segundos = 55;
@@ -12,13 +12,13 @@ function compruebaTiempo(){
 	if (segundos === 60) {
 		minutos++;
 		segundos = 0;		
-	} 
+	}
 	
 	if (minutos === 60 ) {
 		horas++;
 		minutos = 0;
 	}
-
+	
 	if (horas === 24) {
 		dias++;
 		horas = 0;		
@@ -36,7 +36,8 @@ function formateaTiempo(dias,horas,minutos,segundos){
 	let pluralMin;
 	let pluralHor;
 	let pluralDia;
-
+	let pluralFrase;
+	
 	//^ Segundos	
 	if (segundos === 1) {
 		pluralSeg = "";
@@ -61,15 +62,17 @@ function formateaTiempo(dias,horas,minutos,segundos){
 	//^ dias
 	if (dias === 1) {
 		pluralDia = "";
+		pluralFrase = "";
 	} else {
 		pluralDia = "s";
+		pluralFrase = "n"
 	}
 	console.clear();
-	return `Han pasado ${dias} dia${pluralDia}, ${horas} hora${pluralHor} ${minutos} minuto${pluralMin} ${segundos} segundo${pluralSeg}`;
+	return `Ha${pluralFrase} pasado ${dias} dia${pluralDia}, ${horas} hora${pluralHor} ${minutos} minuto${pluralMin} ${segundos} segundo${pluralSeg}`;
 }
 
 function parada(diasParo,horasParo,minutosParo,segundosParo){
-	if (diasParo === dias && horasParo === horas && minutosParo === minutos && segundosParo === segundos  ) {
+	if (diasParo <= dias && horasParo <= horas && minutosParo <= minutos && segundosParo <= segundos  ) {
 		clearInterval(reloj)
 		console.log("Se ha parado el tiempo");		
 	}
@@ -79,7 +82,7 @@ const reloj = setInterval(() => {
 	correTiempo();
 	compruebaTiempo();
 	imprimeTiempo(5);
-	parada(1,0,0,10)
+	parada(2,0,0,50)
 }, 1000);
 
 

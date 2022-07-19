@@ -2,7 +2,9 @@
 
   const letras = ["T","R","W","A","G","M","Y","F","P","D","X","B","N","J","Z","S","Q","V","H","L","C","K","E"];
 
-function compruebaDni(dni){
+//todo comentario
+function compruebaDni(dni){                               
+
  
   const soloNumeros = "^[0-9]+$";
   const soloLetras = `^[${letras}]+$`;
@@ -52,13 +54,15 @@ function compruebaDni(dni){
   if (dni2[1].toLocaleUpperCase() === letras[dni2[0]%23]) {      
     return true;
   } else {
-    return false;
+    let miError = new Error(`La segunda parte tienen que ser solo letras permitidas ${letras}`);
+    miError.codigo = 97;
+    throw miError;  
   }
   
 }
 
 try {   
-  compruebaDni("4s6806756-p") ? console.log("DNI Valido"): console.log("DNI NO Valido");
+  compruebaDni("46806756-p") ? console.log("DNI Valido"): null;
 } catch (error) {
     console.error(error.message,error.codigo);
 }

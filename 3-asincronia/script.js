@@ -26,3 +26,5 @@ agePromise.then((edad)=>{																				//& Cuando se resuelva la generacio
 		}
 	});
 });
+
+
